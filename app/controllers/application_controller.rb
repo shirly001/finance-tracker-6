@@ -5,7 +5,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
+    #permits only the authentication keys on RegistrationController#create
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
+    #permits authentication keys plus password, password_confirmation and current_password
+    #on RegistrationsController#update
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name])
   end  
 

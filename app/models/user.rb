@@ -15,6 +15,7 @@ class User < ApplicationRecord
   end
   
   def under_stock_limit?
+    #already in user class, so instead typing user.stocks, just stocks
     stocks.count < 10
   end
 
@@ -28,6 +29,7 @@ class User < ApplicationRecord
   end
 
   def self.search(param)
+    #string trim()
     param.strip!
     to_send_back = (first_name_matches(param) + last_name_matches(param) + email_matches(param)).uniq
     return nil unless to_send_back
@@ -51,6 +53,7 @@ class User < ApplicationRecord
   end
 
   def except_current_user(users)
+    #return users list where user.id != self.id
     users.reject { |user| user.id == self.id }
   end
 
